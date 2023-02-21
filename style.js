@@ -12,5 +12,26 @@ var wind = document.querySelector(".windSpeed");
 var searchBtn = document.querySelector(".search-button");
 var fiveDaysEl = document.querySelector(".fiveDays");
 
-
+function getWeather(userInput) {
+    let weatherInfo = fetch(
+    apiURL + userInput
+    );
+    weatherInfo
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data) {
+        var name = data[0].name;
+        var latitude = data[0].lat;
+        var longitude = data[0].lon;
+        fetch(
+            "https://api.openweathermap.org/data/2.5/forecast?lat="+
+            latitude +
+            "&lon=" +
+            longitude +
+            "&units=metric&appid=" +
+            apiKey,
+        )
+    })
+}
 });
