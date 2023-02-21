@@ -32,6 +32,18 @@ function getWeather(userInput) {
             "&units=metric&appid=" +
             apiKey,
         )
+        .then(function (data){
+            var currentDay = data.list[0];
+            var currentTemperature = currentDay.main.temp;
+            var currentDayIcon = currentDay.weather[0].icon;
+            var currentHumidty = currentDay.main.humidty;
+            var currentWindSpeed = currentDay.wind.speed;
+            getName.textContext = `Weather in ${name}`;
+            temperature.textContent = `Current Temperature: ${currentTemperature}`;
+            icon.setAttribute ("src", `http://openweathermap,org/img/w/${currentDayIcon}.png`);
+            humidity.textContent = `Current Humidity: ${currentHumidty}`;
+            wind.textContent = `Wind Speed is ${currentWindSpeed}`;
+        })
     })
 }
 });
